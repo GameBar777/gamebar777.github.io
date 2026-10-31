@@ -41,3 +41,4 @@ h2,.ph h1{font-size:26px;letter-spacing:.14em;margin:0 0 28px;font-weight:700}h2
 .gf .in{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-start}.gf .fl p{margin:4px 0 0}.gf nav{display:flex;flex-wrap:wrap;gap:8px 22px;flex:1}.gf nav a{text-decoration:none}.gf nav a:hover{color:var(--tx)}.cp{width:100%;margin:10px 0 0}
 @media (prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto}}
 @media(max-width:720px){.gf nav{flex:1 1 100%}}
+.news p a{color:inherit;text-decoration:underline;text-underline-offset:3px}
