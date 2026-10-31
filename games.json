@@ -1,0 +1,5 @@
+[
+ {"id":"seishun-chronicle","title":"青春クロニクル","subtitle":"～君と過ごした1000日間～","genre":"恋愛学園シミュレーション","url":"https://gamebar777.github.io/ripple-years/","thumb":"img/ripple-years.webp","desc":"星見ヶ丘学園で過ごす高校3年間・152週。9人のヒロインとの出会い、デート、会話。無料・登録不要。","time":"1周 約2〜3時間","tags":["恋愛","学園","スマホ対応"],"note":""},
+ {"id":"showa-crossroads","title":"岐路の十年","subtitle":"TEN YEARS AT THE CROSSROADS 1936–1945","genre":"歴史ライフシミュレーション","url":"https://gamebar777.github.io/showa-crossroads/","thumb":"img/showa-crossroads.webp","desc":"1936〜1945年の日本を、一人の人生として生きる。家族と恋愛を軸に、史実と改変を明示し出典つきで描きます。戦争を美化せず、被害を受けた人々の視点も併記しています。","time":"","tags":["歴史","人生","出典つき"],"note":"戦争・死別の描写を含みます。"},
+ {"id":"odaiba-afterlines","title":"ゆれのあと、きみへ。","subtitle":"ODAIBA AFTERLINES","genre":"防災教育ライフシミュレーション","url":"https://gamebar777.github.io/odaiba-afterlines/","thumb":"img/odaiba-afterlines.webp","desc":"お台場で首都直下地震（架空の想定）に遭遇する。避難、帰宅困難、安否確認、そして生活再建へ。判断をふりかえる防災知識図鑑つき。","time":"","tags":["防災","お台場","学べる"],"note":"架空のシナリオを含みます。実際の災害時は気象庁・自治体・消防・警察などの最新の公式情報に従ってください。本作の結果は実際の安全を保証しません。"}
+]
