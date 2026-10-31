@@ -1,17 +1,79 @@
 <!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>GameBar｜ゆっくり遊べるゲームの小さな店</title><meta name="description" content="ブラウザで無料・登録不要で遊べる、落ち着いたゲームを置いている小さな店。GameBar Studio が営んでいます。"><link rel="canonical" href="https://gamebar777.github.io/">
 <meta property="og:type" content="website"><meta property="og:title" content="GameBar｜ゆっくり遊べるゲームの小さな店"><meta property="og:description" content="ブラウザで無料・登録不要で遊べる、落ち着いたゲームを置いている小さな店。GameBar Studio が営んでいます。"><meta property="og:url" content="https://gamebar777.github.io/"><meta property="og:image" content="https://gamebar777.github.io/img/og.png"><meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#f6eedd"><link rel="icon" href="/img/icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Yomogi&family=Zen+Maru+Gothic:wght@400;700&display=swap"><link rel="stylesheet" href="/style.css"></head><body><div class="wrap"><header class="top"><h1 class="logo">GameBar<small>ゲームバー　ゆっくり遊べるゲームの店</small></h1><svg class="glass" viewBox="0 0 64 80" aria-hidden="true" fill="none" stroke="#3b2a1e" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 9 C22 7 42 8 55 10 L35 39 L34 63"/><path d="M9 9 L30 38 L31 63"/><path d="M20 70 C26 66 40 66 46 70 C38 72 28 72 20 70z"/><path d="M16 17 C28 19 38 18 48 17" stroke="#b5452f"/><circle cx="48" cy="6" r="4" stroke="#b5452f"/><path d="M50 3 L58 -3"/></svg></header>
-<p class="intro">いらっしゃいませ。ここは、ブラウザでそのまま遊べるゲームを置いている小さな店です。お代は要りません、登録も要りません。棚はまだスカスカですが、少しずつ増やしていきます。</p>
-<div class="board"><h2>今日のおすすめ</h2><p id="today">…</p></div>
-<h2 class="sec">お品書き</h2><div class="list" id="list"></div>
-<h2 class="sec">店の日誌</h2><ul class="journal" id="journal"></ul>
+<meta name="theme-color" content="#f6eedd"><link rel="icon" href="/img/icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Yomogi&family=Zen+Maru+Gothic:wght@400;700&display=swap"><link rel="stylesheet" href="/style.css"></head><body><div class="hero"><svg class="scene" viewBox="0 0 800 380" role="img" aria-label="GameBarのカウンター。ランプの下で店主がグラスを拭いている絵" preserveAspectRatio="xMidYMax slice">
+<defs>
+<linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a3a24"/><stop offset="1" stop-color="#7a5234"/></linearGradient>
+<radialGradient id="pool" cx=".5" cy=".15" r=".75"><stop offset="0" stop-color="#ffd890" stop-opacity=".75"/><stop offset=".55" stop-color="#f2b866" stop-opacity=".22"/><stop offset="1" stop-color="#f2b866" stop-opacity="0"/></radialGradient>
+<linearGradient id="wood" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#9a6438"/><stop offset=".18" stop-color="#7c4c2a"/><stop offset="1" stop-color="#4e2f1a"/></linearGradient>
+<pattern id="brick" width="60" height="30" patternUnits="userSpaceOnUse"><path d="M0 15H60M30 0V15M0 15V30M60 15V30" stroke="#ffffff10" stroke-width="1.5"/></pattern>
+</defs>
+<rect width="800" height="380" fill="url(#wall)"/><rect width="800" height="380" fill="url(#brick)"/>
+<!-- shelves -->
+<g stroke="#2e1b0f" stroke-width="2">
+<rect x="70" y="92" width="270" height="9" rx="2" fill="#8b5a33"/><rect x="70" y="170" width="270" height="9" rx="2" fill="#8b5a33"/>
+<rect x="500" y="92" width="240" height="9" rx="2" fill="#8b5a33"/><rect x="500" y="170" width="240" height="9" rx="2" fill="#8b5a33"/>
+</g>
+<g stroke="#2e1b0f" stroke-width="1.6" stroke-linejoin="round">
+<path d="M84 92V60q0-8 6-12V36h8v12q6 4 6 12v32z" fill="#3f6b4e"/><rect x="88" y="66" width="12" height="12" fill="#efe3c6"/>
+<path d="M114 92V54q0-6 5-9V30h6v15q5 3 5 9v38z" fill="#8a2f22"/>
+<path d="M140 92V68q0-10 12-10t12 10v24z" fill="#c9852f"/><rect x="146" y="72" width="12" height="9" fill="#f6eedd"/>
+<path d="M176 92V50l4-8h6l4 8v42z" fill="#6c4a7a"/>
+<path d="M202 92V62q0-6 4-8V40h7v14q4 2 4 8v30z" fill="#d8b25c"/>
+<rect x="230" y="64" width="22" height="28" rx="3" fill="#a65a2b"/><rect x="236" y="56" width="10" height="8" fill="#2e1b0f"/>
+<path d="M266 92V58q0-7 5-10V34h7v14q5 3 5 10v34z" fill="#2f5363"/>
+<path d="M296 92V70q0-8 10-8t10 8v22z" fill="#bfa074"/>
+<path d="M90 170v-26q0-8 8-8h6q8 0 8 8v26z" fill="#7a3d2a"/><path d="M126 170v-38l3-8h6l3 8v38z" fill="#4e7a57"/>
+<path d="M152 170v-30q0-6 5-8v-12h6v12q5 2 5 8v30z" fill="#c46a3a"/>
+<rect x="186" y="138" width="40" height="32" rx="2" fill="#e7d3a8"/><path d="M190 146h32M190 154h24" stroke-width="1"/>
+<path d="M240 170v-34q0-7 6-9v-12h6v12q6 2 6 9v34z" fill="#333a4f"/><path d="M276 170v-24q0-9 11-9t11 9v24z" fill="#9b7a3a"/>
+<path d="M516 92V58q0-7 5-10V34h7v14q5 3 5 10v34z" fill="#8a2f22"/><path d="M546 92V66q0-8 10-8t10 8v26z" fill="#3f6b4e"/>
+<path d="M580 92V50l4-8h6l4 8v42z" fill="#d8b25c"/><rect x="608" y="60" width="24" height="32" rx="3" fill="#6b4226"/><rect x="614" y="52" width="12" height="8" fill="#2e1b0f"/>
+<path d="M646 92V60q0-6 4-8V38h7v14q4 2 4 8v32z" fill="#2f5363"/><path d="M676 92V70q0-8 12-8t12 8v22z" fill="#c9852f"/>
+<path d="M520 170v-30q0-8 10-8t10 8v30z" fill="#bfa074"/><path d="M556 170v-36q0-7 6-9v-12h6v12q6 2 6 9v36z" fill="#6c4a7a"/>
+<g fill="#f3ead6" fill-opacity=".85"><path d="M594 170l-6-22h22l-6 22z"/><path d="M624 170l-6-22h22l-6 22z"/><path d="M654 170l-6-22h22l-6 22z"/></g>
+<path d="M690 170v-28q0-6 5-8v-10h6v10q5 2 5 8v28z" fill="#a65a2b"/>
+</g>
+<!-- small framed sign -->
+<g transform="rotate(-2 400 60)"><path d="M400 8 L356 40M400 8 L444 40" stroke="#2e1b0f" stroke-width="1.5" fill="none"/><circle cx="400" cy="8" r="3" fill="#c9a25a"/>
+<rect x="330" y="38" width="140" height="54" rx="6" fill="#efe3c6" stroke="#2e1b0f" stroke-width="2"/>
+<text x="400" y="73" text-anchor="middle" font-family="Klee One,serif" font-weight="600" font-size="28" fill="#3b2a1e">GameBar</text></g>
+<!-- lamp -->
+<g class="lamp"><path d="M400 0V118" stroke="#2e1b0f" stroke-width="2"/>
+<path d="M372 140q28-34 56 0z" fill="#3a5a46" stroke="#2e1b0f" stroke-width="2"/><ellipse cx="400" cy="141" rx="10" ry="4" fill="#ffe2a0"/>
+<path class="glow" d="M372 141 L200 380 H600 L428 141z" fill="url(#pool)"/></g>
+<!-- master -->
+<g fill="#2b1a10"><circle cx="470" cy="200" r="21"/><path d="M462 186q8-10 22-2q-4 6-22 4z" fill="#1f130b"/>
+<path d="M430 300q-4-60 40-72q44 12 40 72z"/><rect x="458" y="219" width="24" height="12" fill="#efe3c6"/><path d="M462 222l8 6 8-6" stroke="#2b1a10" stroke-width="3" fill="none"/>
+<path d="M432 262q-14 6-6 22l30-4" /><path d="M508 262q12 8 0 22l-30-6"/></g>
+<path d="M452 262h18l-3 18h-12z" fill="#f3ead6" fill-opacity=".9" stroke="#2e1b0f" stroke-width="1.4"/><path d="M466 268q12 6 22 0" stroke="#efe3c6" stroke-width="5" fill="none" stroke-linecap="round"/>
+<!-- counter -->
+<rect x="0" y="292" width="800" height="16" fill="#b07a46" stroke="#2e1b0f" stroke-width="2"/>
+<rect x="0" y="308" width="800" height="72" fill="url(#wood)"/>
+<g stroke="#2e1b0f55" stroke-width="1.4" fill="none"><path d="M0 330q200 -6 400 2t400-2"/><path d="M0 352q180 6 380 -2t420 4"/><path d="M120 308v72M330 308v72M560 308v72"/></g>
+<!-- cup + steam -->
+<g><path d="M300 270h30v14q0 8-8 8h-14q-8 0-8-8z" fill="#f3ead6" stroke="#2e1b0f" stroke-width="1.6"/><path d="M330 275q9 1 0 10" stroke="#2e1b0f" stroke-width="1.6" fill="none"/>
+<g class="steam" stroke="#f6eedd" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"><path d="M310 262q-6-8 0-16t0-16"/><path d="M321 262q-6-8 0-16t0-16"/></g></g>
+<!-- cocktail -->
+<g stroke="#2e1b0f" stroke-width="1.6" stroke-linejoin="round"><path d="M560 252h36l-18 22z" fill="#e7a24a"/><path d="M578 274v16M568 292h20" fill="none"/><circle cx="592" cy="252" r="4" fill="#b5452f"/></g>
+<!-- stools -->
+<g fill="#3b2414" stroke="#2e1b0f" stroke-width="2"><ellipse cx="190" cy="372" rx="40" ry="8"/><ellipse cx="620" cy="372" rx="40" ry="8"/></g>
+</svg>
+</div><div class="wrap">
+<p class="lead"><span class="hand big">いらっしゃいませ。</span><br>ここは、ブラウザでそのまま遊べるゲームを置いている小さな店です。お代も登録も要りません。棚はまだスカスカですが、ゆっくり増やしていきます。</p>
+<div class="board"><div class="board-in"><h2>本日のおすすめ</h2><p id="today">…</p></div><div class="tray" aria-hidden="true"><i></i><i></i></div></div>
+<svg class="divider" viewBox="0 0 320 20" aria-hidden="true"><path d="M4 11 C40 4 60 16 96 10 S150 5 160 10" fill="none" stroke="#8a5a34" stroke-width="1.8" stroke-linecap="round"/><path d="M160 10 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0-12 0" fill="none" stroke="#b5452f" stroke-width="1.6"/><path d="M166 10 C200 15 230 4 270 11 S310 12 316 9" fill="none" stroke="#8a5a34" stroke-width="1.8" stroke-linecap="round"/></svg><h2 class="sec"><span>お品書き</span><small>カードのコースターを押すと、店主のひとことが読めます</small></h2><div class="list" id="list"></div>
+<svg class="divider" viewBox="0 0 320 20" aria-hidden="true"><path d="M4 11 C40 4 60 16 96 10 S150 5 160 10" fill="none" stroke="#8a5a34" stroke-width="1.8" stroke-linecap="round"/><path d="M160 10 m-6 0 a6 6 0 1 0 12 0 a6 6 0 1 0-12 0" fill="none" stroke="#b5452f" stroke-width="1.6"/><path d="M166 10 C200 15 230 4 270 11 S310 12 316 9" fill="none" stroke="#8a5a34" stroke-width="1.8" stroke-linecap="round"/></svg><h2 class="sec"><span>店の日誌</span></h2><ul class="journal" id="journal"></ul>
+<footer class="shopcard"><div class="sc-name">GameBar</div><div class="sc-sub">ゆっくり遊べるゲームの店</div>
+<dl><dt>営業時間</dt><dd>いつでも（店主が寝ていても開いています）</dd><dt>定休日</dt><dd>なし</dd><dt>お代</dt><dd>無料・登録不要</dd><dt>お問い合わせ</dt><dd>窓口は準備中です（暫定：<a href="https://github.com/GameBar777/gamebar777.github.io/issues">GitHub Issues</a>）</dd></dl>
+<nav><a href="/">入口</a><a href="/about.html">この店について</a><a href="/privacy.html">プライバシー</a><a href="/terms.html">利用規約</a></nav><p class="sc-own">GameBar Studio（ゲームバー・スタジオ）</p></footer></div>
 <script type="module">
 const e=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const [g,j]=await Promise.all(['/games.json','/journal.json'].map(u=>fetch(u).then(r=>r.json())));
 const p=g.filter(x=>x.pick);const t=p[new Date().getDate()%p.length];
-document.getElementById('today').innerHTML=`<a href="${e(t.url)}">${e(t.title)}</a> ― ${e(t.master)}`;
-document.getElementById('list').innerHTML=g.map(x=>`<article class="item"><div class="row"><img src="${e(x.thumb)}" alt="${e(x.title)}のタイトル画面" width="92" height="115" loading="lazy"><div><div class="genre">${e(x.genre)}</div><h3>${e(x.title)}</h3><p class="sub">${e(x.subtitle)}</p>${x.time?`<p class="sub">${e(x.time)}</p>`:''}</div></div><p class="desc">${e(x.desc)}</p><p class="master">${e(x.master)}</p>${x.note?`<div class="note">${e(x.note)}</div>`:''}<a class="go" href="${e(x.url)}">遊んでみる</a></article>`).join('')+`<article class="item empty"><p>この棚、まだ空いてます。<br>次のゲームを仕込み中。</p></article>`;
-document.getElementById('journal').innerHTML=j.slice().reverse().map(x=>`<li><time datetime="${e(x.date)}">${e(x.date.replaceAll('-','.'))}</time>${e(x.text)}</li>`).join('');
+document.getElementById('today').innerHTML=`<a href="${e(t.url)}">${e(t.title)}</a><br><span>${e(t.master)}</span>`;
+document.getElementById('list').innerHTML=g.map((x,i)=>`<article class="item c${i%3}"><div class="no">No.${String(i+1).padStart(2,'0')}</div><a class="polaroid" href="${e(x.url)}"><img src="${e(x.thumb)}" alt="${e(x.title)}のタイトル画面" width="240" height="300" loading="lazy"><span>${e(x.genre)}</span></a><div class="info"><h3>${e(x.title)}</h3><p class="sub">${e(x.subtitle)}</p>${x.time?`<p class="sub">${e(x.time)}</p>`:''}<p class="desc">${e(x.desc)}</p>${x.note?`<div class="note">${e(x.note)}</div>`:''}<div class="act"><a class="go" href="${e(x.url)}">遊んでみる</a><button class="coaster" type="button" aria-label="店主のひとことを見る" aria-pressed="false"><span class="cf">店主の<br>ひとこと</span><span class="cb">${e(x.master)}</span></button></div></div></article>`).join('')+`<article class="item empty"><p>この棚、まだ空いてます。<br>次の一本を仕込み中。</p></article>`;
+document.querySelectorAll('.coaster').forEach(b=>b.addEventListener('click',()=>{const on=b.classList.toggle('flip');b.setAttribute('aria-pressed',on)}));
+document.getElementById('journal').innerHTML=j.slice().reverse().map(x=>`<li><time datetime="${e(x.date)}">${e(x.date.replaceAll('-','.'))}</time><span>${e(x.text)}</span></li>`).join('');
 </script>
-<noscript><ul><li><a href="https://gamebar777.github.io/ripple-years/">青春クロニクル</a></li><li><a href="https://gamebar777.github.io/showa-crossroads/">岐路の十年</a></li><li><a href="https://gamebar777.github.io/odaiba-afterlines/">ゆれのあと、きみへ。</a></li></ul></noscript><svg class="squig" viewBox="0 0 140 12" aria-hidden="true"><path d="M2 7 C12 1 18 11 28 6 S46 2 56 7 S74 11 86 5 S106 2 116 7 S132 9 138 5" fill="none" stroke="#b5452f" stroke-width="2" stroke-linecap="round"/></svg><footer><a href="/">お店の入口</a><a href="/about.html">この店について</a><a href="/privacy.html">プライバシー</a><a href="/terms.html">利用規約</a><p>GameBar Studio（ゲームバー・スタジオ）</p></footer></div></body></html>
+<noscript><div class="wrap"><ul><li><a href="https://gamebar777.github.io/ripple-years/">青春クロニクル</a></li><li><a href="https://gamebar777.github.io/showa-crossroads/">岐路の十年</a></li><li><a href="https://gamebar777.github.io/odaiba-afterlines/">ゆれのあと、きみへ。</a></li></ul></div></noscript></body></html>
