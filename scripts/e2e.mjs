@@ -5,7 +5,7 @@ for (const [n,w,h] of [['mobile',390,844],['desktop',1280,800]]) {
   for (const pg of ['','about.html','privacy.html','terms.html']) {
     await p.goto(base+pg,{waitUntil:'networkidle'});
     const ov=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
-    const cards=await p.locator('.card').count();
+    const cards=await p.locator('.item').count();
     console.log(n,pg||'index','overflow',ov,'cards',cards); if(ov)fail++;
     await p.screenshot({path:`docs/screenshots/${n}-${(pg||'index').replace('.html','')}.png`,fullPage:true});
   }
