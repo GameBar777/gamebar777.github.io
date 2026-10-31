@@ -3,7 +3,7 @@ const base=process.argv[2]; const b=await chromium.launch(); let fail=0;
 for (const [n,w,h] of [['mobile',390,844],['desktop',1280,800]]) {
   const p=await b.newPage({viewport:{width:w,height:h}}); const errs=[]; p.on('console',m=>m.type()==='error'&&errs.push(m.text())); p.on('pageerror',e=>errs.push(e.message));
   for (const pg of ['','about.html','privacy.html','terms.html']) {
-    await p.goto(base+pg,{waitUntil:'networkidle'});
+    await p.goto(base+pg,{waitUntil:'load'});
     const ov=await p.evaluate(()=>document.documentElement.scrollWidth>innerWidth);
     const cards=await p.locator('.gc').count();
     console.log(n,pg||'index','overflow',ov,'cards',cards); if(ov)fail++;
