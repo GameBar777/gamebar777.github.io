@@ -1,31 +1,31 @@
-# GameBar デザイン調査メモ（2026-10-31）
+# GameBar デザイン調査メモ
 
-ユーザーからのフィードバック「いかにもAIで作りました感」を受けて調べた。
+## v4（2026-10-31）：ゲーム会社の公式サイトを参考に作り直し
 
-## 「AIっぽい」と感じられる理由
-- モデルは何も指定されないと、学習データで一番よく見るデザインに寄っていく（distributional convergence）。たとえば紫系のグラデーション、Inter/システムフォント、同じ形のカードが3つ並ぶ、全部同じ角丸と淡い影、左右対称のヒーロー、何にでも当てはまる見出し。
-  - Anthropic「Improving frontend design through Skills」 https://claude.com/blog/improving-frontend-design-through-skills
-  - prg.sh「Why Your AI Keeps Building the Same Purple Gradient Website」 https://prg.sh/ramblings/Why-Your-AI-Keeps-Building-the-Same-Purple-Gradient-Website
-  - illos.dev「Why vibe-coded websites look the same」 https://illos.dev/guides/vibe-coded-websites
-  - IOV Studio「The Tells」（27個の"AIっぽさ"の兆候の分類）https://labs.iovstudio.kr/papers/ai-design-tells.pdf / https://github.com/hankimis/ai-design-tells
-- 一つの要素だけで決まるわけではない。デフォルトの選択が「まとめて」出てきて、誰かが決めた形跡が見えないときにAIっぽく見える（ai-design-tells の craft-credit の考え方）。
-- 旧GameBarで当てはまっていたもの：暗い放射グラデーション、ネオンの発光、同じ形のカード、中央寄せのヒーロー、どこにでもありそうなキャッチコピー。
+ユーザーから「もっとAI臭くなった」と言われた。手描き風のSVG、黒板、ポラロイド、裏返るコースターといった「作り込んだ演出」が、かえってAIっぽく見えていた。そこで実在のゲーム会社の公式サイトを参考に作り直した。
 
-## 人の手で作ったと感じられるサイトの特徴（観察）
-- itch.io の個人ゲーム開発者のページ：作者が一人称で書く、作った日付や更新の記録が正直に残っている、レイアウトが少し崩れている、手描きの素材。
-- 日本の個人サイト・ZINE：日記や更新履歴、管理人のひとこと、紙のような質感、手書き風フォント、少しの冗談。
-- 喫茶店やバーの手書きメニュー：黒板の「本日のおすすめ」、ちょっと傾いた紙、チョークのかすれ、店主のコメント。
+### 調べたサイト
+2026-10-31に Playwright（1280×800、ja-JP）で表示し、スクリーンショットとナビの文言を確認した。スクリーンショットは他社の著作物なので公開リポジトリには入れず、/workspace/refs にだけ置いている。
+- 表示できた：nintendo.co.jp, sie.com/jp, capcom.co.jp, jp.square-enix.com, bandainamcoent.co.jp, atlus.co.jp, gamefreak.co.jp, fromsoftware.jp, cdprojekt.com, valvesoftware.com, ubisoft.com
+- ボット対策で表示できなかった：sega.jp（セキュリティ検証の画面）、cygames.co.jp（Access Denied）、rockstargames.com（中身が取れず）、riotgames.com（タイムアウト）
 
-## 採用した方針
-- 明るく温かい紙の色（生成り・クラフト紙）に、焦げ茶と赤の差し色。ネオンと発光は使わない。
-- フォント（いずれも SIL Open Font License 1.1 で商用利用可）：Klee One（見出し・手書き感）、Zen Maru Gothic（本文）、Yomogi（チョーク文字）。
-  - https://github.com/google/fonts/blob/main/ofl/kleeone/OFL.txt
-  - https://github.com/google/fonts/blob/main/ofl/zenmarugothic/OFL.txt
-  - https://github.com/google/fonts/blob/main/ofl/yomogi/OFL.txt
-- SVGの落書き（グラス、矢印、波線）は自前で手打ちしたパス。AI画像は使っていない。
-- カードの傾き・余白・テープの位置を1枚ずつ変える。
-- 文章は店主（マスター）の一人称。具体的に書き、少しだけユーモアを入れる。誇張・架空のレビュー・プレイ数は載せない。
-- 日誌（更新履歴）は実際の日付だけを書く。
+### 共通していたこと
+1. **上部に固定のグローバルナビ。** 左にロゴ、右に短い項目が並ぶ（例：ATLUS「Top / News / Titles / Pick Up」、GAME FREAK「VISION / WORKS / MESSAGE / COMPANY / TOPICS / RECRUIT」、SIE「ニュースルーム / 採用情報 / 会社情報」）。スマホではハンバーガーメニュー（FromSoftware、GAME FREAK）。
+2. **大きなキービジュアル。** 実際のゲーム画像やキーアートを画面幅いっぱいに出し、カルーセルで切り替える（任天堂、アトラス、FromSoftware、カプコン）。装飾のイラストは使っていない。
+3. **日付つきのニュース一覧。** 日付、カテゴリのラベル、1行の見出し（アトラス「News」、GAME FREAK「TOPICS」）。
+4. **タイトル一覧はグリッド。** 16:9のサムネイル、ジャンル、タイトル名（スクウェア・エニックス、バンダイナムコ）。
+5. **文字は控えめ。** ゴシック体（ヒラギノ角ゴ／游ゴシック／Noto系）、英語の大見出しに日本語の小見出しを添える、字間を広めにとる。
+6. **会社情報・ポリシーはフッターに。** 会社概要、プライバシーポリシー、サイトポリシー（FromSoftware、Valve、GAME FREAK）。
+7. **装飾はほとんどない。** マスコットの落書き、絵文字、傾いたカード、手書きフォントはどのサイトにもなかった。主役はゲーム画像そのもの。
 
-## v3（2026-10-31）
-- 「シンプルすぎる」との声を受け、手描き風SVGのカウンター情景、ポラロイド風サムネ、裏返るコースター（店主のひとこと）、黒板、ショップカード風フッターを追加。AI画像は不使用（SVG/CSSのみ）。アニメーションは prefers-reduced-motion で停止。
+### 取り入れたこと
+- 固定ヘッダー（ロゴ／ニュース／ゲーム／会社情報／X）。スマホではハンバーガーメニュー。
+- 実際のゲーム画像（各ゲームのリポジトリ public/ にあるキーアート・背景）を使ったKVカルーセル。6秒ごとに切り替わり、ドットで操作でき、動きを減らす設定のときは自動で切り替わらない。画像には「ゲーム内画像」と表示する。岐路の十年の画像には、ゲーム内の表記に合わせて「AI再現イメージ」と付ける。
+- NEWS（journal.json の実際の日付のみ）、GAMES のグリッド（games.json）、ABOUT、会社情報の表、フッター。
+- 配色は黒に近いグレーと、アクセントにアンバーを1色だけ。「バー」らしさは名前と暗い配色で控えめに残すだけにした。
+- 削除したもの：手描きのカウンター画、黒板、ポラロイド、コースター、Klee One／Yomogi。
+
+## 過去版の記録
+- v2：明るい紙の色、手書き風のフォント。「シンプルすぎる」と言われた。
+- v3：手描き風SVGの情景を追加。「もっとAI臭くなった」と言われた。
+- 参考にした文献（AIっぽく見えるデザインの兆候）：https://claude.com/blog/improving-frontend-design-through-skills / https://illos.dev/guides/vibe-coded-websites / https://github.com/hankimis/ai-design-tells
