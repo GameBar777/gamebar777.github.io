@@ -1,0 +1,82 @@
+<!-- ゲーム営業部の未公開原稿（2026-11-12）。広報部への引き渡し用。ボットのメールアドレスは記載しない。事実は GameBar777/odaiba-afterlines origin/main e8d65f9 の README・docs/SPEC・docs/ENDINGS・docs/COUNTS と src/engine/engine.ts・src/data/base.ts に基づく。 -->
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>ゆれのあと、きみへ。遊び方と生き延びるしくみ｜GameBar</title><meta name="description" content="ブラウザ防災シミュレーション『ゆれのあと、きみへ。― ODAIBA AFTERLINES』の遊び方。3人の主人公、発生時刻と備えの設定、体力・水分・スマホ電池、171と通信、負傷、エンディングのしくみを、ゲームの実装に沿って案内します。"><link rel="canonical" href="https://gamebar777.github.io/guides/odaiba-afterlines/how-to-play.html">
+<meta property="og:type" content="article"><meta property="og:site_name" content="GameBar"><meta property="og:title" content="ゆれのあと、きみへ。遊び方と生き延びるしくみ｜GameBar"><meta property="og:description" content="ブラウザ防災シミュレーション『ゆれのあと、きみへ。― ODAIBA AFTERLINES』の遊び方。3人の主人公、発生時刻と備えの設定、体力・水分・スマホ電池、171と通信、負傷、エンディングのしくみを、ゲームの実装に沿って案内します。"><meta property="og:url" content="https://gamebar777.github.io/guides/odaiba-afterlines/how-to-play.html"><meta property="og:image" content="https://gamebar777.github.io/img/og.png"><meta name="twitter:card" content="summary_large_image"><meta property="og:locale" content="ja_JP"><meta name="twitter:site" content="@GameBar777"><meta name="twitter:title" content="ゆれのあと、きみへ。遊び方と生き延びるしくみ｜GameBar"><meta name="twitter:description" content="ブラウザ防災シミュレーション『ゆれのあと、きみへ。― ODAIBA AFTERLINES』の遊び方。3人の主人公、発生時刻と備えの設定、体力・水分・スマホ電池、171と通信、負傷、エンディングのしくみを、ゲームの実装に沿って案内します。"><meta name="twitter:image" content="https://gamebar777.github.io/img/og.png"><script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://gamebar777.github.io/#website", "url": "https://gamebar777.github.io/", "name": "GameBar", "inLanguage": "ja", "publisher": {"@id": "https://gamebar777.github.io/#org"}}, {"@type": "Organization", "@id": "https://gamebar777.github.io/#org", "name": "GameBar Studio", "alternateName": "ゲームバー・スタジオ", "url": "https://gamebar777.github.io/", "logo": "https://gamebar777.github.io/img/icon.png", "sameAs": ["https://x.com/GameBar777"]}, {"@type": "WebPage", "name": "ゆれのあと、きみへ。遊び方と生き延びるしくみ｜GameBar", "description": "ブラウザ防災シミュレーション『ゆれのあと、きみへ。― ODAIBA AFTERLINES』の遊び方。3人の主人公、発生時刻と備えの設定、体力・水分・スマホ電池、171と通信、負傷、エンディングのしくみを、ゲームの実装に沿って案内します。", "url": "https://gamebar777.github.io/guides/odaiba-afterlines/how-to-play.html", "isPartOf": {"@id": "https://gamebar777.github.io/#website"}, "inLanguage": "ja"}, {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "GameBar", "item": "https://gamebar777.github.io/"}, {"@type": "ListItem", "position": 2, "name": "ゆれのあと、きみへ。", "item": "https://gamebar777.github.io/odaiba-afterlines/"}, {"@type": "ListItem", "position": 3, "name": "遊び方と生き延びるしくみ", "item": "https://gamebar777.github.io/guides/odaiba-afterlines/how-to-play.html"}]}]}</script>
+<meta name="theme-color" content="#111111"><link rel="icon" href="/img/icon.png"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap"><link rel="stylesheet" href="/style.css">
+<style>
+.doc h3{font-size:15px;color:var(--acc);letter-spacing:.08em;margin:28px 0 8px;font-weight:700}
+.doc p{margin:0 0 1em}
+.doc ul,.doc ol{margin:0 0 1.1em;padding-left:1.4em}
+.doc li{margin:0 0 .35em}
+.doc .note{font-size:13px;color:var(--mute);border-left:2px solid var(--acc);padding-left:12px;margin:20px 0}
+.doc .cta{margin:28px 0 8px}
+.doc .related{margin:32px 0 0;padding-top:20px;border-top:1px solid var(--line);font-size:14px}
+.doc .related a{margin-right:1.2em}
+</style><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8014608731344430" crossorigin="anonymous"></script></head><body>
+<header class="gh"><div class="in"><a class="logo" href="/">GameBar</a>
+<input type="checkbox" id="nv" class="nvt" aria-label="メニュー"><label for="nv" class="burger" aria-hidden="true"><i></i><i></i><i></i></label>
+<nav class="gn"><a href="/#news">ニュース</a><a href="/#games">ゲーム</a><a href="/about.html">会社情報</a><a href="https://x.com/GameBar777" rel="noopener" target="_blank">X</a></nav></div></header><main><section class="ph"><div class="in"><h1>遊び方と生き延びるしくみ<small>ゆれのあと、きみへ。― ODAIBA AFTERLINES</small></h1></div></section><section class="sec"><div class="in narrow doc">
+
+<p>『ゆれのあと、きみへ。― ODAIBA AFTERLINES』は、お台場で架空の「首都直下地震」に遭遇する、ブラウザ・スマホ対応の防災教育シミュレーションです。登録も課金もなく、<a href="https://gamebar777.github.io/odaiba-afterlines/">本サイトのプレイページ</a>からそのまま始められます。選んだ行動の結果は、持ち物・体の状態・時刻・周りの人の行動から計算され、「なぜそうなったか」が画面に示されます。</p>
+
+<p class="note">本作は防災教育を目的としたゲームで、地震・被害・施設・避難経路・人物の行動には架空の内容を含みます（架空の施設は名前に「（架空）」と付いています）。実際の災害時は、気象庁・自治体・消防・警察などの最新の公式情報と現地の状況に従ってください。ゲームの結果は現実の安全を保証しません。</p>
+
+<h2>はじめに選ぶ主人公</h2>
+<ul>
+<li><strong>会社員（標準）</strong>：宮下湊、34歳。台場のオフィスで働き、妻と小学2年の娘は江東区南砂にいます。</li>
+<li><strong>大学生</strong>：佐倉葵、20歳。品川で恋人と待ち合わせの約束があり、祖母は世田谷の古い家に一人で暮らしています。</li>
+<li><strong>父親（子連れ）</strong>：安藤健司、41歳。休日に5歳の息子とお台場へ。妻は品川区の病院で勤務中です。</li>
+</ul>
+<p>主人公によって、始まる場所と、連絡を取りたい家族が変わります。</p>
+
+<h2>発生時刻・備え・体調の設定</h2>
+<ul>
+<li><strong>発生時刻</strong>：平日昼（15時12分）・平日夜（19時40分）・休日（13時05分）。夜は足元が見えにくく、ライトがないと転倒や疲労の危険が大きくなります。</li>
+<li><strong>備え</strong>：なし・少し・しっかり。「しっかり」ではモバイルバッテリー、笛、水、マスク、ライト、非常用お菓子、現金を持った状態で始まり、スマホの電池も多め（85%）です。「なし」では電池35%から始まります。</li>
+<li><strong>体調</strong>：ふつう・喘息。喘息ではスタミナが少ない状態で始まり、吸入薬をなくすと危険です。</li>
+</ul>
+<p>同じ主人公でも、設定を変えると選べる行動と結果が変わります。2周目以降は、設定を変えて遊ぶと違いがよく分かります。</p>
+
+<h2>画面の数値と、時間で減るもの</h2>
+<p>状態は、体力・スタミナ・水分・こころ・スマホ電池・負傷・持ち物などで表されます。体力が0になると、その時点の原因が記録されてゲームオーバー（死亡ルート）になります。</p>
+<ul>
+<li>時間が進むと、水分とスマホ電池が減ります。歩いて移動している間は、水分とスタミナの減りが大きくなります。</li>
+<li>スマホの節電をすると、電池の減りがゆるやかになります。</li>
+<li>手当てしていない傷は、時間とともに体力を削ります。脚の深い切り傷や喘息の発作は特に重く、早めの手当てが必要です。</li>
+<li>水分が尽きると、体力が減り続けます。</li>
+</ul>
+
+<h2>危険のダメージを左右するもの</h2>
+<p>ガラス片・倒壊・液状化・火災などの危険を受けたときのダメージは、そのときの状態で増減します。ゲームが参照している主な要素は次のとおりです。</p>
+<ul>
+<li>歩きやすい靴がないと、ガラス片・倒壊・液状化のダメージが大きくなる。</li>
+<li>頭を守っていると、落下物・倒壊・ガラス片のダメージが半分になる。</li>
+<li>マスクで口元を覆えていると、火災（煙）のダメージが小さくなる。</li>
+<li>夜間は、疲労・液状化・交通・水などの危険のダメージが大きくなり、ライトもスマホの明かり（電池が少し残っている状態）もないとさらに大きくなる。</li>
+<li>疲労が限界に近い、脱水気味、すでに負傷している、といった状態もダメージを大きくする。</li>
+</ul>
+<p>結果の画面には、どの要素が効いたかが表示されます。</p>
+
+<h2>連絡と情報：電話・メッセージ・171</h2>
+<p>地震の直後（ゲーム内で発生から3時間）は電話がつながりません。メッセージやSNSは、その間は届くかどうかが確率で決まります。通信が回復するまでは、電話はつながりません。災害用伝言ダイヤル171とweb171は、伝言を預けておく仕組みなので、電池が残っていれば届きます。電話は電池を多めに使います。送れなかったメッセージは端末に残り、物語の終わりに意味を持つことがあります。</p>
+<p>情報は、公式（ゲーム内の架空情報）・施設・目撃・SNSに分かれ、信頼度が★で示されます。注記には、確かめるべき点が書かれています。SNSの情報だけで動くと危ない場面もあります。</p>
+
+<h2>周りの人たち</h2>
+<p>登場人物は18人です。ショッピングモールで出会う非番の看護師、乳児を連れた母親、地震が初めての外国人旅行者、父とはぐれた子供、持病の薬をなくした人、一時滞在施設（架空）の職員、港湾作業員などがいます。人物には22の自律行動ルールがあり、あなたが何もしなくても、時刻と条件に応じて動きます。誰かを助けた記録は、物語の終わりに語られます。</p>
+
+<h2>エンディングと「その後」</h2>
+<p>エンディングは10種類あります。生き延びて家族や大切な人と会えるもの、復興の中で新しい役割を見つけるもの、誰かを失うもの、帰れなかったものがあります。死亡した場合も、死因と経緯、残した伝言や写真、助けた人の言葉が「その後」として語られます。</p>
+<p>1周の長さは、開発資料の推定で約100〜140分です（表示される文章量からの推定で、読む速さで変わります）。</p>
+
+<h2>セーブ</h2>
+<p>進行はブラウザ（localStorage）に保存されます。設定の「書き出し」でセーブ文字列をコピーしておけば、「読み込み」で復元できます。揺れの演出は設定で止められ、端末の「視差効果を減らす」設定にも従います。音は最初はミュートで、急に大きな音は出ません。</p>
+
+<p class="note">このページは、公開中のゲームのリポジトリ（README・仕様書・エンディング表・件数表）とゲームの処理を照合して書いた案内です。未確認の攻略情報や、プレイした人の感想は書いていません。ゲーム内の防災知識は、出典付きで図鑑にまとめられています。</p>
+<p class="cta"><a class="more" href="https://gamebar777.github.io/odaiba-afterlines/">ゲームを遊ぶ</a></p>
+<p class="related">GameBarのほかの作品：<a href="/seishun-chronicle/">青春クロニクル</a><a href="/guides/seishun-chronicle/">青春クロニクル 攻略ガイドまとめ</a></p>
+
+</div></section></main><aside class="fnb"><div class="in"><p class="mark">PR</p><p>ゲームや防災の参考になる外部サービスです。購入や効果を保証するものではありません。</p><ul class="fnl"><li><a href="https://px.a8.net/svt/ejp?a8mat=4BGERB+BMJR1U+5HQC+5YJRM" rel="nofollow">あかまる防災</a>（防災グッズの参考）<img border="0" width="1" height="1" src="https://www18.a8.net/0.gif?a8mat=4BGERB+BMJR1U+5HQC+5YJRM" alt=""></li><li><a href="https://px.a8.net/svt/ejp?a8mat=4BGERB+BHSA7M+50BY+5YRHE" rel="nofollow">アルファー食品</a>（非常食の参考）<img border="0" width="1" height="1" src="https://www14.a8.net/0.gif?a8mat=4BGERB+BHSA7M+50BY+5YRHE" alt=""></li><li><a href="https://px.a8.net/svt/ejp?a8mat=4BGERB+BN56NM+37DC+5YJRM" rel="nofollow">復刊ドットコム</a>（絶版本・品切れ本）<img border="0" width="1" height="1" src="https://www19.a8.net/0.gif?a8mat=4BGERB+BN56NM+37DC+5YJRM" alt=""></li><li><a href="https://px.a8.net/svt/ejp?a8mat=4BGERB+BIDPTE+XTI+15ORS2" rel="nofollow">Pixioのゲーミングモニター</a><img border="0" width="1" height="1" src="https://www12.a8.net/0.gif?a8mat=4BGERB+BIDPTE+XTI+15ORS2" alt=""></li></ul></div></aside>
+<footer class="gf"><div class="in"><div class="fl"><a class="logo" href="/">GameBar</a><p>GameBar Studio（ゲームバー・スタジオ）</p></div>
+<nav><a href="/#games">ゲーム</a><a href="/#news">ニュース</a><a href="/about.html">会社情報</a><a href="/privacy.html">プライバシーポリシー</a><a href="/terms.html">利用規約</a><a href="https://x.com/GameBar777" rel="noopener" target="_blank">公式X</a></nav>
+<p class="cp">© 2026 GameBar Studio</p></div></footer><script data-goatcounter="https://gamebar.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body></html>
